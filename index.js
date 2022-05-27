@@ -6,7 +6,7 @@ const process = require('./process');
 const parser = (context) => {
 	const { source: entities } = context;
 
-	map(entities, (data, name) => {
+	return map(entities, (data, name) =>
 		process({
 			...context,
 			data: {
@@ -14,8 +14,9 @@ const parser = (context) => {
 				entityData: data,
 				entityName: name,
 			},
-		});
-	});
+		}));
 };
 
-parser({ source, config });
+const result = parser({ source, config });
+
+console.log;

@@ -6,6 +6,7 @@ const getAction = require('./getAction');
 // eslint-disable-next-line max-lines-per-function
 const entity = (context) => {
 	const {
+		source,
 		config,
 		data: {
 			entityData,
@@ -41,7 +42,7 @@ const entity = (context) => {
 
 // eslint-disable-next-line max-lines-per-function
 const collection = (context) => {
-	const { getAction, config: { statusKey }} = context;
+	const { config: { statusKey }} = context;
 	const { data: { parentStatus, entityData, config }} = context;
 	const { children } = config;
 
@@ -76,7 +77,7 @@ const process = (context) => {
 		collection,
 	};
 
-	typeProcessors[type](context);
+	return typeProcessors[type](context);
 };
 
 module.exports = process;
