@@ -1,0 +1,34 @@
+{
+  "devDependencies": {
+    "eslint": "^8.16.0"
+  },
+  "dependencies": {
+    "@laufire/utils": "^3.0.0-0",
+    "jest": "^28.1.0",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "test-dev": "react-scripts test --watchAll=false",
+    "test-ci": "pnpm run test-dev -- --coverage",
+    "lint": "npx eslint ."
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./*/**/*.js",
+      "./test/int/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./src/index.js",
+      "./src/reportWebVitals.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "restoreMocks": true
+  }
+}
