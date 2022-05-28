@@ -20,6 +20,10 @@ const rules = [
 		action: 'uiDelete',
 	},
 	{
+		parentStatus: 'uiDelete',
+		action: 'uiDelete',
+	},
+	{
 		parentStatus: 'create',
 		action: 'create',
 	},
