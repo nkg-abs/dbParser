@@ -33,7 +33,7 @@ const config = {
 							children: {},
 						},
 						products: {
-							type: 'entity',
+							type: 'collection',
 							children: {},
 							path: '',
 							maping: {

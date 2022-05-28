@@ -17,6 +17,4 @@ const parser = (context) => {
 		}));
 };
 
-const result = parser({ source, config });
-
-console.log;
+parser({ source, config });
