@@ -20,7 +20,8 @@ const entity = (context) => {
 	const { [statusKey]: currentStatus, id } = entityData;
 	const { maping, children } = currentConfig;
 	const maped = translate(entityData, maping);
-	const action = getAction({
+
+	entityData[statusKey] = getAction({
 		...context,
 		data: {
 			parentStatus: parentStatus,
@@ -35,7 +36,7 @@ const entity = (context) => {
 			entityData: result(source[entityName], path),
 			entityName: name,
 			config: result(currentConfig, resolve(`children/${ path }`)),
-			parentStatus: currentStatus,
+			parentStatus: entityData[statusKey],
 		},
 	}));
 };
@@ -46,10 +47,11 @@ const collection = (context) => {
 	const { data: { parentStatus, entityData, config }} = context;
 	const { children } = config;
 
+	// eslint-disable-next-line max-lines-per-function
 	return map(entityData, (entity) => {
 		const { [statusKey]: currentStatus, id } = entity;
 
-		const action = getAction({
+		entity[statusKey] = getAction({
 			...context,
 			data: {
 				parentStatus: parentStatus,
@@ -64,7 +66,7 @@ const collection = (context) => {
 				config: config.children[name],
 				entityData: entity[name],
 				entityName: name,
-				parentStatus: currentStatus,
+				parentStatus: entity[statusKey],
 			},
 		}));
 	});
